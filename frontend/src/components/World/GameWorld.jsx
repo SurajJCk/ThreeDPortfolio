@@ -1,11 +1,9 @@
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Sky, Stars, Environment } from '@react-three/drei';
 import Player from './Player';
 import WelcomeZone from './WelcomeZone';
 import ProjectsZone from './ProjectsZone';
 import ConnectZone from './ConnectZone';
-import useGameStore from '../../store/gameStore';
 
 const Ground = () => {
   return (
@@ -24,15 +22,14 @@ const Lighting = () => {
   return (
     <>
       {/* Ambient light */}
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.5} />
       
-      {/* Main directional light (sun) */}
+      {/* Main directional light */}
       <directionalLight
         position={[10, 20, 10]}
         intensity={1}
         castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
+        shadow-mapSize={[1024, 1024]}
         shadow-camera-far={50}
         shadow-camera-left={-20}
         shadow-camera-right={20}
@@ -41,15 +38,8 @@ const Lighting = () => {
       />
       
       {/* Fill lights */}
-      <pointLight position={[-10, 10, -10]} intensity={0.5} color="#4a90e2" />
-      <pointLight position={[10, 10, 10]} intensity={0.5} color="#2ecc71" />
-      
-      {/* Hemisphere light for better ambient */}
-      <hemisphereLight
-        skyColor="#87CEEB"
-        groundColor="#1a1a2e"
-        intensity={0.3}
-      />
+      <pointLight position={[-10, 10, -10]} intensity={0.3} color="#4a90e2" />
+      <pointLight position={[10, 10, 10]} intensity={0.3} color="#2ecc71" />
     </>
   );
 };
@@ -85,11 +75,40 @@ const PathConnector = ({ start, end, color = '#ffffff' }) => {
   );
 };
 
+// Simple starfield background
+const Starfield = () => {
+  const stars = [];
+  for (let i = 0; i < 200; i++) {
+    const x = (Math.random() - 0.5) * 100;
+    const y = Math.random() * 50 + 10;
+    const z = (Math.random() - 0.5) * 100;
+    stars.push([x, y, z]);
+  }
+  
+  return (
+    <group>
+      {stars.map((pos, i) => (
+        <mesh key={i} position={pos}>
+          <sphereGeometry args={[0.1, 4, 4]} />
+          <meshBasicMaterial color="#ffffff" />
+        </mesh>
+      ))}
+    </group>
+  );
+};
+
 const Scene = () => {
   return (
     <>
+      {/* Background color */}
+      <color attach="background" args={['#0a0a0f']} />
+      
+      {/* Fog for depth */}
+      <fog attach="fog" args={['#0a0a0f', 30, 60]} />
+      
       <Lighting />
       <Ground />
+      <Starfield />
       
       {/* Paths connecting zones */}
       <PathConnector 
@@ -110,44 +129,24 @@ const Scene = () => {
       
       {/* Player */}
       <Player />
-      
-      {/* Skybox and environment */}
-      <Sky
-        distance={450000}
-        sunPosition={[0, 1, 0]}
-        inclination={0.6}
-        azimuth={0.25}
-      />
-      <Stars
-        radius={100}
-        depth={50}
-        count={5000}
-        factor={4}
-        saturation={0}
-        fade
-        speed={1}
-      />
     </>
   );
 };
 
 const GameWorld = () => {
-  const controlsRef = useRef();
-  
   return (
     <div className="w-full h-screen">
       <Canvas
         shadows
         camera={{ position: [0, 5, 10], fov: 60 }}
-        gl={{ antialias: true, alpha: false }}
-        onCreated={({ gl }) => {
-          gl.setClearColor('#0a0a0f');
+        gl={{ 
+          antialias: true, 
+          alpha: false,
+          powerPreference: "high-performance"
         }}
       >
         <Suspense fallback={null}>
           <Scene />
-          {/* Environment for better reflections */}
-          <Environment preset="night" />
         </Suspense>
       </Canvas>
     </div>
