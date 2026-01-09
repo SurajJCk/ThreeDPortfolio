@@ -1,4 +1,3 @@
-import { Text } from '@react-three/drei';
 import InteractiveObject from './InteractiveObject';
 import portfolioData from '../../mock/portfolioData';
 
@@ -35,27 +34,6 @@ const WelcomeZone = () => {
           type="bio"
         />
       </group>
-
-      {/* Direction markers */}
-      <Text
-        position={[6, 1, -3]}
-        rotation={[0, -Math.PI / 4, 0]}
-        fontSize={0.5}
-        color="#f39c12"
-        anchorX="center"
-      >
-        Projects →
-      </Text>
-
-      <Text
-        position={[-6, 1, -3]}
-        rotation={[0, Math.PI / 4, 0]}
-        fontSize={0.5}
-        color="#2ecc71"
-        anchorX="center"
-      >
-        ← Connect
-      </Text>
 
       {/* Ambient particles/stars */}
       {[...Array(20)].map((_, i) => (
