@@ -3,6 +3,7 @@ import './App.css';
 import GameWorld from './components/World/GameWorld';
 import LoadingScreen from './components/UI/LoadingScreen';
 import GameUI from './components/UI/GameUI';
+import ContentModal from './components/UI/ContentModal';
 import useGameStore from './store/gameStore';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <>
           <GameWorld />
           <GameUI />
+          <ContentModal />
         </>
       )}
     </div>
