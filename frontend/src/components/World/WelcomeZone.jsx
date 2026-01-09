@@ -43,8 +43,6 @@ const WelcomeZone = () => {
         fontSize={0.5}
         color="#f39c12"
         anchorX="center"
-        outlineWidth={0.02}
-        outlineColor="#000000"
       >
         Projects →
       </Text>
@@ -55,8 +53,6 @@ const WelcomeZone = () => {
         fontSize={0.5}
         color="#2ecc71"
         anchorX="center"
-        outlineWidth={0.02}
-        outlineColor="#000000"
       >
         ← Connect
       </Text>
