@@ -30,8 +30,6 @@ const ConnectZone = () => {
         fontSize={1}
         color="#ffffff"
         anchorX="center"
-        outlineWidth={0.05}
-        outlineColor="#000000"
       >
         {zoneData.name}
       </Text>
