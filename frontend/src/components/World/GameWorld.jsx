@@ -1,6 +1,6 @@
-import React, { Suspense, useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Sky, Stars, Environment, OrbitControls } from '@react-three/drei';
+import { Sky, Stars, Environment } from '@react-three/drei';
 import Player from './Player';
 import WelcomeZone from './WelcomeZone';
 import ProjectsZone from './ProjectsZone';
