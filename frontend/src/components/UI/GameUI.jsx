@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import useGameStore from '../../store/gameStore';
-import { Settings, Volume2, VolumeX, HelpCircle, X } from 'lucide-react';
+import { Volume2, VolumeX, HelpCircle, X } from 'lucide-react';
 
 const GameUI = () => {
   const {
