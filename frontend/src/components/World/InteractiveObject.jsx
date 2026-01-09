@@ -14,7 +14,7 @@ const InteractiveObject = ({
 }) => {
   const meshRef = useRef();
   const { playerPosition, setNearbyInteractable } = useGameStore();
-  const [hovered, setHovered] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
 
   useFrame((state) => {
     if (!meshRef.current) return;
