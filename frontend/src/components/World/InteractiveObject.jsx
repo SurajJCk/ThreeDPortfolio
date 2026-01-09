@@ -83,8 +83,6 @@ const InteractiveObject = ({
         color="white"
         anchorX="center"
         anchorY="middle"
-        outlineWidth={0.05}
-        outlineColor="#000000"
       >
         {title}
       </Text>
