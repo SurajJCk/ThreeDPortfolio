@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useKeyboard, getMovementInput } from '../../hooks/useKeyboard';
 import useGameStore from '../../store/gameStore';
