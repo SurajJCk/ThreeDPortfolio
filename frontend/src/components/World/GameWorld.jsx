@@ -75,25 +75,34 @@ const PathConnector = ({ start, end, color = '#ffffff' }) => {
   );
 };
 
-// Simple starfield background
+// Simple starfield using Points for better performance
 const Starfield = () => {
-  const stars = [];
-  for (let i = 0; i < 200; i++) {
-    const x = (Math.random() - 0.5) * 100;
-    const y = Math.random() * 50 + 10;
-    const z = (Math.random() - 0.5) * 100;
-    stars.push([x, y, z]);
+  const count = 1000;
+  const positions = new Float32Array(count * 3);
+  
+  for (let i = 0; i < count; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 200;
+    positions[i * 3 + 1] = Math.random() * 50 + 10;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
   }
   
   return (
-    <group>
-      {stars.map((pos, i) => (
-        <mesh key={i} position={pos}>
-          <sphereGeometry args={[0.1, 4, 4]} />
-          <meshBasicMaterial color="#ffffff" />
-        </mesh>
-      ))}
-    </group>
+    <points>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={count}
+          array={positions}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.15}
+        color="#ffffff"
+        sizeAttenuation={true}
+        transparent={false}
+      />
+    </points>
   );
 };
 
