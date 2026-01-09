@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 import useGameStore from '../../store/gameStore';
 
@@ -75,17 +74,6 @@ const InteractiveObject = ({
           color={color}
         />
       )}
-
-      {/* Title text */}
-      <Text
-        position={[0, 2, 0]}
-        fontSize={0.4}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {title}
-      </Text>
     </group>
   );
 };
