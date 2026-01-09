@@ -1,4 +1,3 @@
-import { Text } from '@react-three/drei';
 import InteractiveObject from './InteractiveObject';
 import portfolioData from '../../mock/portfolioData';
 
@@ -17,16 +16,6 @@ const ProjectsZone = () => {
           roughness={0.6}
         />
       </mesh>
-
-      {/* Zone title */}
-      <Text
-        position={[0, 4, 0]}
-        fontSize={1}
-        color="#ffffff"
-        anchorX="center"
-      >
-        {zoneData.name}
-      </Text>
 
       {/* Project displays */}
       {projects.map((project, index) => {
