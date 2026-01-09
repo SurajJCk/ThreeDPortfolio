@@ -4,6 +4,7 @@ import GameWorld from './components/World/GameWorld';
 import LoadingScreen from './components/UI/LoadingScreen';
 import GameUI from './components/UI/GameUI';
 import ContentModal from './components/UI/ContentModal';
+import ErrorBoundary from './components/ErrorBoundary';
 import useGameStore from './store/gameStore';
 
 function App() {
@@ -21,11 +22,11 @@ function App() {
       
       {/* Main 3D World */}
       {gameStarted && (
-        <>
+        <ErrorBoundary showDetails={false}>
           <GameWorld />
           <GameUI />
           <ContentModal />
-        </>
+        </ErrorBoundary>
       )}
     </div>
   );
