@@ -1,4 +1,3 @@
-import { Text } from '@react-three/drei';
 import InteractiveObject from './InteractiveObject';
 import portfolioData from '../../mock/portfolioData';
 
@@ -23,16 +22,6 @@ const ConnectZone = () => {
           roughness={0.7}
         />
       </mesh>
-
-      {/* Zone title */}
-      <Text
-        position={[0, 4, 0]}
-        fontSize={1}
-        color="#ffffff"
-        anchorX="center"
-      >
-        {zoneData.name}
-      </Text>
 
       {/* Social connection nodes */}
       {socialLinks.map((link, index) => {
