@@ -29,13 +29,12 @@ const Lighting = () => {
         position={[10, 20, 10]}
         intensity={1}
         castShadow
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-far={50}
-        shadow-camera-left={-20}
-        shadow-camera-right={20}
-        shadow-camera-top={20}
-        shadow-camera-bottom={-20}
-      />
+      >
+        <orthographicCamera
+          attach="shadow-camera"
+          args={[-20, 20, 20, -20, 0.5, 50]}
+        />
+      </directionalLight>
       
       {/* Fill lights */}
       <pointLight position={[-10, 10, -10]} intensity={0.3} color="#4a90e2" />
